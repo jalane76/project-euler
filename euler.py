@@ -15,7 +15,10 @@ def is_prime(n):    #Fix this to be more robust
     return True
     
 def factors(n):     #Fix this to be more robust
-    factors = [1, n]
+    if n == 1:
+        factors = [1]
+    else:
+        factors = [1, n]
     root = int(n**0.5) + 1
     for i in range(2, root):
         if n % i == 0:
