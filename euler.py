@@ -2,7 +2,7 @@
 import sys
 import math
 
-def is_prime(n):
+def is_prime(n):    #Fix this to be more robust
     if n <= 3:
         if n <= 1:
             return False
@@ -14,3 +14,12 @@ def is_prime(n):
             return False
     return True
     
+def factors(n):     #Fix this to be more robust
+    factors = [1, n]
+    root = int(n**0.5) + 1
+    for i in range(2, root):
+        if n % i == 0:
+            factors.append(i)
+            factors.append(int(n / i))
+    factors.sort()
+    return factors
