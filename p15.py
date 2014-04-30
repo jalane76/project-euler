@@ -4,8 +4,8 @@ import math
 import euler
 
 def main():
-    gridSize = 20
-    print(euler.binomial_coefficient(gridSize + gridSize, gridSize))
+    grid_size = 20
+    print(euler.binomial_coefficient(grid_size + grid_size, grid_size))
 
 if __name__ == "__main__":
     main()
