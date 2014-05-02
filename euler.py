@@ -23,7 +23,8 @@ def factors(n):     #Fix this to be more robust
     for i in range(2, root):
         if n % i == 0:
             factors.append(i)
-            factors.append(int(n / i))
+            if i != int(n / i):
+                factors.append(int(n / i))
     factors.sort()
     return factors
 
@@ -31,6 +32,28 @@ def even_divisors(n):   #Fix this to be more robust
     divisors = factors(n)
     del divisors[-1]
     return divisors
+
+def is_perfect_number(n):
+    return sum(even_divisors(n)) == n
+
+def is_deficient_number(n):
+    return sum(even_divisors(n)) < n
+
+def is_abundant_number(n):
+    return sum(even_divisors(n)) > n
+
+def is_sum_of_two_abundant_numbers(n, abundants):
+    if n < 24:
+        return False
+    if n > 28123:
+        return True
+    a = abundants[0]
+    for a in abundants:
+        if a > int(n / 2):
+            return False
+        if is_abundant_number(n - a):
+            return True
+    return False
 
 def collatz_sequence(n):
     sequence = [n]
