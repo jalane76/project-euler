@@ -5,9 +5,7 @@ import euler
 
 def main():
     n = str(math.factorial(100))
-    s = 0
-    for i in range(len(n)):
-        s += int(n[i])
+    s = sum([int(i) for i in n])
 
     print(n)
     print(s)
