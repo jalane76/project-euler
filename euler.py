@@ -26,7 +26,12 @@ def factors(n):     #Fix this to be more robust
             factors.append(int(n / i))
     factors.sort()
     return factors
-    
+
+def even_divisors(n):   #Fix this to be more robust
+    divisors = factors(n)
+    del divisors[-1]
+    return divisors
+
 def collatz_sequence(n):
     sequence = [n]
     
