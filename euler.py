@@ -72,3 +72,10 @@ def binomial_coefficient(n, k):
     for i in range(n - k + 1, n + 1):
         numerator *= i
     return int(numerator / math.factorial(k))
+
+def fibonacci(n):
+    golden_ratio = (1 + 5 ** 0.5) / 2
+    return math.floor((golden_ratio ** n) / (5 ** 0.5) + 0.5)
+
+def fibonacci(f_n1, f_n2):
+    return f_n1 + f_n2
