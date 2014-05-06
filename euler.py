@@ -79,3 +79,43 @@ def fibonacci(n):
 
 def fibonacci(f_n1, f_n2):
     return f_n1 + f_n2
+
+class UnitFraction:
+    denominator = 1
+    remainders = []
+    digits = []
+    repeated_sequence = []
+    __is_generated = False
+
+    def __init__(self, denominator):
+        self.denominator = denominator
+        self.remainders.clear()
+        self.digits.clear()
+        self.repeated_sequence.clear()
+        self.__is_generated = False
+
+        # DEBUG - temporarily do this here
+        self.__generate()
+
+    def get_decimal_representation(self):
+        return 1 / self.denominator
+
+    def __generate(self):
+        if not self.__is_generated:
+            remainder = 1
+            while remainder != 0 and self.remainders.count(remainder) <= 1:
+                digit = 0
+                remainder *= 10
+                if remainder >= self.denominator:
+                    digit = int(remainder / self.denominator)
+                    remainder = remainder % self.denominator
+                self.remainders.append(remainder)
+                self.digits.append(digit)
+            if remainder != 0:
+                last_remainder = self.remainders[-1]
+                self.remainders = self.remainders[:len(self.remainders) - 1]
+                period = len(self.remainders) - self.remainders.index(last_remainder)
+                if period > 1:
+                    self.digits = self.digits[:len(self.digits) - 1]
+                self.repeated_sequence = self.digits[-period:]
+            self.__is_generated = True
