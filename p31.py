@@ -11,9 +11,7 @@ def calc(coins, equation, pence):
             return 0
     else:
         total = 0
-        limit = math.ceil((pence - sum(equation)) / coins[0])
-        print(limit)
-        for i in range(math.ceil((pence - sum(equation)) / coins[0])):
+        for i in range(int(pence / coins[0]) + 1):
             new_equation = equation.copy()
             new_equation.append(i * coins[0])
             new_coins = coins.copy()[1:]
