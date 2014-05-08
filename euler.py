@@ -45,6 +45,12 @@ def is_abundant_number(n):
 def is_palindrome(s):
     return s == s[::-1]
 
+def is_pandigital(n):
+    n = str(n)
+    if len(n) != 9:
+        return False
+    return '1' in n and '2' in n and '3' in n and '4' in n and '5' in n and '6' in n and '7' in n and '8' in n and '9' in n
+
 def is_sum_of_two_abundant_numbers(n, abundants):
     if n < 24:
         return False
