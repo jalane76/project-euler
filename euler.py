@@ -42,6 +42,9 @@ def is_deficient_number(n):
 def is_abundant_number(n):
     return sum(even_divisors(n)) > n
 
+def is_palindrome(s):
+    return s == s[::-1]
+
 def is_sum_of_two_abundant_numbers(n, abundants):
     if n < 24:
         return False
