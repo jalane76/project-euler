@@ -87,6 +87,9 @@ def binomial_coefficient(n, k):
         numerator *= i
     return int(numerator / math.factorial(k))
 
+def triangle_number(n):
+    return int(0.5 * n * (n + 1))
+
 def fibonacci(n):
     golden_ratio = (1 + 5 ** 0.5) / 2
     return math.floor((golden_ratio ** n) / (5 ** 0.5) + 0.5)
