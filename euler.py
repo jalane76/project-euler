@@ -105,6 +105,15 @@ def is_pentagonal_number(n):
     bottom = math.floor(m)
     return pentagonal_number(top) == n or pentagonal_number(bottom) == n
 
+def hexagonal_number(n):
+    return n * (2 * n - 1)
+
+def is_hexagonal_number(n):
+    m = (n * 0.5) ** 0.5
+    top = math.ceil(m)
+    bottom = math.floor(m)
+    return hexagonal_number(top) == n or hexagonal_number(bottom) == n
+
 def fibonacci(n):
     golden_ratio = (1 + 5 ** 0.5) / 2
     return math.floor((golden_ratio ** n) / (5 ** 0.5) + 0.5)
