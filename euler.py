@@ -90,6 +90,21 @@ def binomial_coefficient(n, k):
 def triangle_number(n):
     return int(0.5 * n * (n + 1))
 
+def is_triangle_number(n):
+    m = (2 * n) ** 0.5
+    top = math.ceil(m)
+    bottom = math.floor(m)
+    return triangle_number(top) == n or triangle_number(bottom) == n
+
+def pentagonal_number(n):
+    return int(0.5 * n * (3 * n - 1))
+
+def is_pentagonal_number(n):
+    m = (2 * n / 3) ** 0.5
+    top = math.ceil(m)
+    bottom = math.floor(m)
+    return pentagonal_number(top) == n or pentagonal_number(bottom) == n
+
 def fibonacci(n):
     golden_ratio = (1 + 5 ** 0.5) / 2
     return math.floor((golden_ratio ** n) / (5 ** 0.5) + 0.5)
