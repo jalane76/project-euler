@@ -28,6 +28,9 @@ def factors(n):     #Fix this to be more robust
     factors.sort()
     return factors
 
+def prime_factors(n):
+    return [i for i in factors(n) if is_prime(i)]
+
 def even_divisors(n):   #Fix this to be more robust
     divisors = factors(n)
     del divisors[-1]
