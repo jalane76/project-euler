@@ -55,7 +55,6 @@ def is_pandigital(n):
             return False
     return True
 
-
 def is_sum_of_two_abundant_numbers(n, abundants):
     if n < 24:
         return False
@@ -113,6 +112,14 @@ def is_hexagonal_number(n):
     top = math.ceil(m)
     bottom = math.floor(m)
     return hexagonal_number(top) == n or hexagonal_number(bottom) == n
+
+def is_sum_of_prime_and_twice_square(n):
+    max_square = math.floor((0.5 * n) ** 0.5)
+    for i in range(max_square, 0, -1):
+        p = n - 2 * i * i
+        if is_prime(p):
+            return True
+    return False
 
 def fibonacci(n):
     golden_ratio = (1 + 5 ** 0.5) / 2
