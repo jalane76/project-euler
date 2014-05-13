@@ -16,7 +16,7 @@ def main():
             is_found = True
         n += 1
 
-    print(T)
+    print(T )
 
 if __name__ == "__main__":
     main()
