@@ -53,23 +53,84 @@ class Hand:
     def __repr__(self):
         return str([str(c) for c in self.cards])
 
-    def get_high_card(self):
+    def __lt__(self, other):
+        self_rank = self.__get_rank()
+        other_rank = other.__get_rank()
+        if self_rank < other_rank:
+            return True
+        elif self_rank > other_rank:
+            return False
+        else:
+            if self.__is_flush() or self.__is_straight() or self.__is_high_card():
+                return self.__get_high_card() < other.__get_high_card()
+            if self.__is_four_of_a_kind():
+                c1 = self.__get_four_of_a_kinds()[0][0]
+                c2 = other.__get_four_of_a_kinds()[0][0]
+                return c1 < c2
+            if self.__is_full_house() or self.__is_three_of_a_kind():
+                c1 = self.__get_three_of_a_kinds()[0][0]
+                c2 = other.__get_three_of_a_kinds()[0][0]
+                return c1 < c2
+            if self.__is_two_pairs():
+                p1_high = self.__get_pairs()[0][0]
+                p1_low = self.__get_pairs()[1][0]
+                if p1_high < p1_low:
+                    tmp = p1_high
+                    p1_high = p1_low
+                    p1_low = tmp
+
+                p2_high = other.__get_pairs()[0][0]
+                p2_low = other.__get_pairs()[1][0]
+                if p2_high < p2_low:
+                    tmp = p2_high
+                    p2_high = p2_low
+                    p2_low = tmp
+
+                if p1_high < p2_high:
+                    return True
+                elif p1_high > p2_high:
+                    return False
+                else:
+                    if p1_low < p2_low:
+                        return True
+                    elif p1_low > p2_low:
+                        return False
+                    else:
+                        h1 = Hand(self.__get_singles())
+                        h2 = Hand(other.__get_singles())
+                        return h1 < h2
+            if self.__is_one_pair():
+                p1 = self.__get_pairs()[0][0]
+                p2 = other.__get_pairs()[0][0]
+                if p1 < p2:
+                    return True
+                elif p1 > p2:
+                    return False
+                else:
+                    h1 = Hand(self.__get_singles())
+                    h2 = Hand(other.__get_singles())
+                    return h1 < h2
+
+    def __get_high_card(self):
         high_card = None
         for c in self.cards:
             if high_card is None or c > high_card:
                 high_card = c
         return high_card
 
-    def get_pairs(self):
-        return [p for p in self.get_kinds() if len(p) == 2]
+    def __get_singles(self):
+        return [str(p[0]) for p in self.__get_kinds() if len(p) == 1]
 
-    def get_three_of_a_kinds(self):
-        return [p for p in self.get_kinds() if len(p) == 3]
+    def __get_pairs(self):
+        return [p for p in self.__get_kinds() if len(p) == 2]
 
-    def get_four_of_a_kinds(self):
-        return [p for p in self.get_kinds() if len(p) == 4]
+    def __get_three_of_a_kinds(self):
+        return [p for p in self.__get_kinds() if len(p) == 3]
 
-    def get_kinds(self):
+    def __get_four_of_a_kinds(self):
+        return [p for p in self.__get_kinds() if len(p) == 4]
+
+    def __get_kinds(self):
         kinds = []
         head = 0
         tail = head + 1
@@ -83,35 +144,59 @@ class Hand:
             kinds.append(self.cards[head:tail])
         return kinds
 
-    def is_straight(self):
+    def __is_straight(self):
         for i in range(0, len(self.cards) - 1):
             if self.cards[i].value + 1 != self.cards[i + 1].value:
                 return False
         return True
 
-    def is_flush(self):
+    def __is_flush(self):
         for i in range(0, len(self.cards) - 1):
             if not self.cards[i].same_suit(self.cards[i + 1]):
                 return False
         return True
 
-    def get_rank(self):
-        if self.is_straight() and self.is_flush():
-            if self.get_high_card().value == 14:
-                return 10 # Royal Flush
-            return 9 # Straight Flush
-        if len(self.get_four_of_a_kinds()) > 0:
-            return 8 # Four of a Kind
-        if len(self.get_three_of_a_kinds()) > 0 and len(self.get_pairs()) > 0:
-            return 7 # Full House
-        if self.is_flush():
-            return 6 # Flush
-        if self.is_straight():
-            return 5 # Straight
-        if len(self.get_three_of_a_kinds()) > 0:
-            return 4 # Three of a Kind
-        if len(self.get_pairs()) > 1:
-            return 3 # Two Pairs
-        if len(self.get_pairs()) > 0:
-            return 2 # One Pair
+    def __is_royal_flush(self):
+        return self.__is_straight() and self.__is_flush() and self.__get_high_card().value == 14
+
+    def __is_straight_flush(self):
+        return self.__is_straight() and self.__is_flush()
+
+    def __is_four_of_a_kind(self):
+        return len(self.__get_four_of_a_kinds()) > 0
+
+    def __is_full_house(self):
+        return len(self.__get_three_of_a_kinds()) > 0 and len(self.__get_pairs()) > 0
+
+    def __is_three_of_a_kind(self):
+        return len(self.__get_three_of_a_kinds()) > 0 and not self.__is_full_house()
+
+    def __is_two_pairs(self):
+        return len(self.__get_pairs()) == 2
+
+    def __is_one_pair(self):
+        return len(self.__get_pairs()) == 1 and not self.__is_full_house()
+
+    def __is_high_card(self):
+        return len(self.__get_kinds()) == len(self.cards) and not self.__is_straight() and not self.__is_flush()
+
+    def __get_rank(self):
+        if self.__is_royal_flush():
+            return 10
+        if self.__is_straight_flush():
+            return 9
+        if self.__is_four_of_a_kind():
+            return 8
+        if self.__is_full_house():
+            return 7
+        if self.__is_flush():
+            return 6
+        if self.__is_straight():
+            return 5
+        if self.__is_three_of_a_kind():
+            return 4
+        if self.__is_two_pairs():
+            return 3
+        if self.__is_one_pair():
+            return 2
         return 1
