@@ -1,37 +1,32 @@
 #! python
 
 import euler
-import math
-
-def get_next_prime(p):
-    p = p + 1
-    while not euler.is_prime(p):
-        p = p + 1
-    return p
+import itertools
 
 def main():
-    primes = [3]
-    current_prime = 5
-    log_level = 2
-
+    # primes = [3, 7, 109, 673, 129976621]
+    primes = []
+    upper_bound = 150
     num_primes = 5
-    while len(primes) < num_primes:
-        concats_with_all = True
-        for p in primes:
-            p_1 = int(str(p) + str(current_prime))
-            p_2 = int(str(current_prime) + str(p))
-            if not euler.is_prime(p_1) or not euler.is_prime(p_2):
-                concats_with_all = False
-                break
-        if concats_with_all:
-            primes.append(current_prime)
-        current_prime = get_next_prime(current_prime)
-        if math.log10(current_prime) > log_level:
-            print(10 ** log_level)
-            log_level = log_level + 1
 
-    print(primes)
-    print(sum(primes))
+    for n in range(1, upper_bound):
+        if euler.is_prime(n):
+            primes.append(n)
+
+    # build up a list of unique pairs of primes and concatenate to primes
+    combos = itertools.combinations(primes, 2)
+    pairs = []
+    for pair in combos:
+        p_1 = int(str(pair[0]) + str(pair[1]))
+        p_2 = int(str(pair[1]) + str(pair[0]))
+        if euler.is_prime(p_1) and euler.is_prime(p_2):
+            pairs.append(pair)
+
+    pairs = [sorted(list(p)) for p in pairs]
+    pairs = {tuple(p) for p in pairs}
+    pairs = [set(p) for p in pairs]
+
+
 
 if __name__ == "__main__":
     main()
