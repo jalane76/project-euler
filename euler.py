@@ -98,6 +98,13 @@ def is_triangle_number(n):
     bottom = math.floor(m)
     return triangle_number(top) == n or triangle_number(bottom) == n
 
+def square_number(n):
+    return int(n ** 2)
+
+def is_square_number(n):
+    m = int(n ** 0.5)
+    return n == square_number(m)
+
 def pentagonal_number(n):
     return int(0.5 * n * (3 * n - 1))
 
@@ -108,13 +115,31 @@ def is_pentagonal_number(n):
     return pentagonal_number(top) == n or pentagonal_number(bottom) == n
 
 def hexagonal_number(n):
-    return n * (2 * n - 1)
+    return int(n * (2 * n - 1))
 
 def is_hexagonal_number(n):
     m = (n * 0.5) ** 0.5
     top = math.ceil(m)
     bottom = math.floor(m)
     return hexagonal_number(top) == n or hexagonal_number(bottom) == n
+
+def heptagonal_number(n):
+    return int(n * (5 * n - 3) * 0.5)
+
+def is_heptagonal_number(n):
+    m = (2 * n / 5) ** 0.5
+    top = math.ceil(m)
+    bottom = math.floor(m)
+    return heptagonal_number(top) == n or heptagonal_number(bottom) == n
+
+def octagonal_number(n):
+    return int(n * (3 * n - 2))
+
+def is_octagonal_number(n):
+    m = (n / 3) ** 0.5
+    top = math.ceil(m)
+    bottom = math.floor(m)
+    return octagonal_number(top) == n or octagonal_number(bottom) == n
 
 def is_sum_of_prime_and_twice_square(n):
     max_square = math.floor((0.5 * n) ** 0.5)
@@ -130,6 +155,18 @@ def fibonacci(n):
 
 def fibonacci(f_n1, f_n2):
     return f_n1 + f_n2
+
+def rotate_right(n, r):
+    return int(str(n)[-r:] + str(n)[:-r])
+
+def rotate_left(n, r):
+    return int(str(n)[r:] + str(n)[:r])
+
+def product(list):
+    p = 1
+    for n in list:
+        p *= n
+    return p
 
 class UnitFraction:
     denominator = 1
