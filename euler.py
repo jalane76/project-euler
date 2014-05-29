@@ -2,6 +2,8 @@
 import sys
 import math
 
+# Primes and factoring
+
 def is_prime(n):    #Fix this to be more robust
     if n <= 3:
         if n <= 1:
@@ -45,6 +47,30 @@ def is_deficient_number(n):
 def is_abundant_number(n):
     return sum(even_divisors(n)) > n
 
+def is_sum_of_two_abundant_numbers(n, abundants):
+    if n < 24:
+        return False
+    if n > 28123:
+        return True
+    a = abundants[0]
+    for a in abundants:
+        if a > int(n / 2):
+            return False
+        if is_abundant_number(n - a):
+            return True
+    return False
+
+def is_sum_of_prime_and_twice_square(n):
+    max_square = math.floor((0.5 * n) ** 0.5)
+    for i in range(max_square, 0, -1):
+        p = n - 2 * i * i
+        if is_prime(p):
+            return True
+    return False
+
+
+# String-like operations on numbers
+
 def is_palindrome(s):
     return s == s[::-1]
 
@@ -58,18 +84,16 @@ def is_pandigital(n):
             return False
     return True
 
-def is_sum_of_two_abundant_numbers(n, abundants):
-    if n < 24:
-        return False
-    if n > 28123:
-        return True
-    a = abundants[0]
-    for a in abundants:
-        if a > int(n / 2):
-            return False
-        if is_abundant_number(n - a):
-            return True
-    return False
+def rotate_right(n, r):
+    return int(str(n)[-r:] + str(n)[:-r])
+
+def rotate_left(n, r):
+    return int(str(n)[r:] + str(n)[:r])
+
+def is_permutation(n, m):
+    return sorted(list(str(n))) == sorted(list(str(m)))
+
+# Sequences and counting
 
 def collatz_sequence(n):
     sequence = [n]
@@ -89,6 +113,16 @@ def binomial_coefficient(n, k):
         numerator *= i
     return int(numerator / math.factorial(k))
 
+def fibonacci(n):
+    golden_ratio = (1 + 5 ** 0.5) / 2
+    return math.floor((golden_ratio ** n) / (5 ** 0.5) + 0.5)
+
+def fibonacci(f_n1, f_n2):
+    return f_n1 + f_n2
+
+
+# Polygonal or figurative numbers
+
 def triangle_number(n):
     return int(0.5 * n * (n + 1))
 
@@ -102,8 +136,10 @@ def square_number(n):
     return int(n ** 2)
 
 def is_square_number(n):
-    m = int(n ** 0.5)
-    return n == square_number(m)
+    m = n ** 0.5
+    top = math.ceil(m)
+    bottom = math.floor(m)
+    return n == square_number(top) or n == square_number(bottom)
 
 def pentagonal_number(n):
     return int(0.5 * n * (3 * n - 1))
@@ -141,32 +177,26 @@ def is_octagonal_number(n):
     bottom = math.floor(m)
     return octagonal_number(top) == n or octagonal_number(bottom) == n
 
-def is_sum_of_prime_and_twice_square(n):
-    max_square = math.floor((0.5 * n) ** 0.5)
-    for i in range(max_square, 0, -1):
-        p = n - 2 * i * i
-        if is_prime(p):
-            return True
-    return False
+def cubic_number(n):
+    return n ** 3
 
-def fibonacci(n):
-    golden_ratio = (1 + 5 ** 0.5) / 2
-    return math.floor((golden_ratio ** n) / (5 ** 0.5) + 0.5)
+def is_cubic_number(n):
+    m = n ** (1 / 3)
+    top = math.ceil(m)
+    bottom = math.floor(m)
+    return n == cubic_number(top) or n == cubic_number(bottom)
 
-def fibonacci(f_n1, f_n2):
-    return f_n1 + f_n2
 
-def rotate_right(n, r):
-    return int(str(n)[-r:] + str(n)[:-r])
-
-def rotate_left(n, r):
-    return int(str(n)[r:] + str(n)[:r])
+# List helpers
 
 def product(list):
     p = 1
     for n in list:
         p *= n
     return p
+
+
+# Unit fraction class
 
 class UnitFraction:
     denominator = 1
