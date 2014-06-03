@@ -120,6 +120,33 @@ def fibonacci(n):
 def fibonacci(f_n1, f_n2):
     return f_n1 + f_n2
 
+def root_continued_fraction_sequence(n):
+    def process_term(n, term):
+        whole_term = term[0]
+        numerator = term[2]
+        denominator = term[1]
+
+        new_whole_term = 0
+        new_numerator =  -denominator
+        new_denominator = int((n - denominator ** 2) / numerator)
+        while new_numerator - new_denominator >= -math.floor(n ** 0.5):
+            new_numerator -= new_denominator
+            new_whole_term += 1
+        return (new_whole_term, new_numerator, new_denominator)
+
+    first_term = math.floor(n ** 0.5)
+    sequence = [first_term]
+    if square_number(first_term) == n:
+        return sequence
+
+    terms = []
+    term = process_term(n, (first_term, -first_term, 1))
+    while term not in terms:
+        terms.append(term)
+        term = process_term(n, term)
+    sequence.append([t[0] for t in terms])
+    return sequence
+
 
 # Polygonal or figurative numbers
 
@@ -127,6 +154,8 @@ def triangle_number(n):
     return int(0.5 * n * (n + 1))
 
 def is_triangle_number(n):
+    if n < 1:
+        return False
     m = (2 * n) ** 0.5
     top = math.ceil(m)
     bottom = math.floor(m)
@@ -136,6 +165,8 @@ def square_number(n):
     return int(n ** 2)
 
 def is_square_number(n):
+    if n < 1:
+        return False
     m = n ** 0.5
     top = math.ceil(m)
     bottom = math.floor(m)
@@ -145,6 +176,8 @@ def pentagonal_number(n):
     return int(0.5 * n * (3 * n - 1))
 
 def is_pentagonal_number(n):
+    if n < 1:
+        return False
     m = (2 * n / 3) ** 0.5
     top = math.ceil(m)
     bottom = math.floor(m)
@@ -154,6 +187,8 @@ def hexagonal_number(n):
     return int(n * (2 * n - 1))
 
 def is_hexagonal_number(n):
+    if n < 1:
+        return False
     m = (n * 0.5) ** 0.5
     top = math.ceil(m)
     bottom = math.floor(m)
@@ -163,6 +198,8 @@ def heptagonal_number(n):
     return int(n * (5 * n - 3) * 0.5)
 
 def is_heptagonal_number(n):
+    if n < 1:
+        return False
     m = (2 * n / 5) ** 0.5
     top = math.ceil(m)
     bottom = math.floor(m)
@@ -172,6 +209,8 @@ def octagonal_number(n):
     return int(n * (3 * n - 2))
 
 def is_octagonal_number(n):
+    if n < 1:
+        return False
     m = (n / 3) ** 0.5
     top = math.ceil(m)
     bottom = math.floor(m)
@@ -181,6 +220,8 @@ def cubic_number(n):
     return n ** 3
 
 def is_cubic_number(n):
+    if n < 1:
+        return False
     m = n ** (1 / 3)
     top = math.ceil(m)
     bottom = math.floor(m)
