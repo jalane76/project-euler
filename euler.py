@@ -332,3 +332,57 @@ class UnitFraction:
                     self.digits = self.digits[:len(self.digits) - 1]
                 self.repeated_sequence = self.digits[-period:]
             self.__is_generated = True
+
+class NGonRing:
+    __nodes = []
+    node_count = 0
+    n = 0
+
+    def __init__(self, nodes):
+        self.__nodes = nodes
+        self.node_count = len(nodes)
+        self.n = int(self.node_count / 2)
+        if self.n % 2 != 1 or self.n < 3:
+            raise ValueError('Incorrect number of nodes to create an n-gon')
+
+    def __eq__(self, other):
+        return self.get_all_groups() == other.get_all_groups()
+
+    def __hash__(self):
+        return sum(self.__nodes)
+
+    def get_group(self, i):
+        j = i + self.n
+        if i == self.n - 1:
+            k = self.n
+        else:
+            k = i + self.n + 1
+        return (self.__nodes[i], self.__nodes[j], self.__nodes[k])
+
+    def get_all_groups(self):
+        min_index = 0
+        for i in range(0, self.n):
+            if self.__nodes[i] < self.__nodes[min_index]:
+                min_index = i
+
+        groups = []
+        for i in range(0, self.n):
+            groups.append(self.get_group((i + min_index) % self.n))
+        return groups
+
+    def is_magic(self):
+        groups = self.get_all_groups()
+        S = sum(groups[0])
+        for g in groups[1:]:
+            if sum(g) != S:
+                return False
+        return True
+
+    def total(self):
+        if self.is_magic():
+            return sum(self.get_group(0))
+        else:
+            return 0
+
+    def magic_string(self):
+        return ''.join([''.join(map(str, g)) for g in self.get_all_groups()])
