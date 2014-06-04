@@ -5,24 +5,19 @@ import math
 import fractions
 import euler
 
-def find_minimal_solution(d):
-    pass
-
 def main():
-    n = 13
+    n = 1000
     D = [x for x in range(2, n + 1) if not euler.is_square_number(x)]
 
     max_x = 0
     max_d = 0
 
-    # for i in range(0, len(D)):
-    #     solution = find_minimal_solution(D[i])
-    #     print(D[i], ': ', solution)
-    #     if solution[0] > max_x:
-    #         max_x = solution[0]
-    #         max_d = D[i]
-    # print(max_d)
-
+    for i in range(0, len(D)):
+        solution = euler.find_fundamental_pell_solution(D[i])
+        if solution[0] > max_x:
+            max_x = solution[0]
+            max_d = D[i]
+    print(max_d)
 
 
 

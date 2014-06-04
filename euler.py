@@ -1,6 +1,7 @@
 #! python
 import sys
 import math
+import fractions
 
 # Primes and factoring
 
@@ -147,6 +148,59 @@ def root_continued_fraction_sequence(n):
     sequence.append([t[0] for t in terms])
     return sequence
 
+def next_continued_fraction_convergent(b, A_n1, A_n2, B_n1, B_n2):
+    return fractions.Fraction(b * A_n1 + A_n2, b * B_n1 + B_n2)
+
+def calc_convergents_with_sequence(s):
+    convergents = [fractions.Fraction(s[0], 1)]
+    A_n1 = s[0]
+    A_n2 = 1
+    B_n1 = 1
+    B_n2 = 0
+    for b in s[1:]:
+        convergent = next_continued_fraction_convergent(b, A_n1, A_n2, B_n1, B_n2)
+        convergents.append(convergent)
+        A_n2 = A_n1
+        B_n2 = B_n1
+        A_n1 = convergent.numerator
+        B_n1 = convergent.denominator
+    return convergents
+
+def calc_convergents_with_repeating_sequence(s, n):
+    convergents = [fractions.Fraction(s[0], 1)]
+    repeated_sequence = s[1]
+    A_n1 = s[0]
+    A_n2 = 1
+    B_n1 = 1
+    B_n2 = 0
+    for i in range(0, n):
+        b = repeated_sequence[i % len(repeated_sequence)]
+        convergent = next_continued_fraction_convergent(b, A_n1, A_n2, B_n1, B_n2)
+        convergents.append(convergent)
+        A_n2 = A_n1
+        B_n2 = B_n1
+        A_n1 = convergent.numerator
+        B_n1 = convergent.denominator
+    return convergents
+
+def find_fundamental_pell_solution(d):
+    s = root_continued_fraction_sequence(d)
+    convergent = fractions.Fraction(s[0], 1)
+    repeated_sequence = s[1]
+    A_n1 = s[0]
+    A_n2 = 1
+    B_n1 = 1
+    B_n2 = 0
+    i = 0
+    while convergent.numerator ** 2 - d * convergent.denominator ** 2 != 1:
+        b = repeated_sequence[i % len(repeated_sequence)]
+        convergent = next_continued_fraction_convergent(b, A_n1, A_n2, B_n1, B_n2)
+        A_n2 = A_n1
+        B_n2 = B_n1
+        A_n1 = convergent.numerator
+        B_n1 = convergent.denominator
+        i += 1
+    return (convergent.numerator, convergent.denominator)
 
 # Polygonal or figurative numbers
 
