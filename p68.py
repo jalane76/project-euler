@@ -9,7 +9,7 @@ def main():
     perms = itertools.permutations(nums)
     n_gons = [euler.NGonRing(p) for p in perms]
     magical_n_gons = list({n for n in n_gons if n.is_magic()})
-    strings = [n.magic_string() for n in n_gons]
+    strings = [n.magic_string() for n in magical_n_gons]
     strings = [s for s in strings if len(s) == 16]
     print(max(strings))
 
@@ -17,3 +17,8 @@ if __name__ == "__main__":
     start = time.time()
     main()
     print('RUNTIME: ', time.time() - start, 's')
+
+
+# Solutions
+# 6544383927211015 -- ints
+# 6549438327211015 -- strings
