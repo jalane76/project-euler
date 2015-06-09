@@ -16,6 +16,9 @@ def is_prime(n):    #Fix this to be more robust
         if not n % i or not n % (i + 2):
             return False
     return True
+
+def is_relatively_prime(m, n):
+    return fractions.gcd(m, n) == 1
     
 def factors(n):     #Fix this to be more robust
     if n == 1:
@@ -68,6 +71,29 @@ def is_sum_of_prime_and_twice_square(n):
         if is_prime(p):
             return True
     return False
+
+def coprimes_less_than(n):
+    if n < 2:
+        return []
+    if n == 2:
+        return [1]
+    else:
+        coprimes = [1]
+        roof = math.ceil(n / 2)
+        for i in range(2, roof):
+            if is_relatively_prime(i, n):
+                coprimes.append(i)
+                coprimes.append(n - i)
+        coprimes.append(n - 1)
+        coprimes.sort()
+        return coprimes
+
+def totient(n):
+    factors = prime_factors(n)
+    result = 1
+    for p in factors:
+        result = result * (1 - (1 / p))
+    return int(result * n)
 
 
 # String-like operations on numbers

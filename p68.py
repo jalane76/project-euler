@@ -17,8 +17,3 @@ if __name__ == "__main__":
     start = time.time()
     main()
     print('RUNTIME: ', time.time() - start, 's')
-
-
-# Solutions
-# 6544383927211015 -- ints
-# 6549438327211015 -- strings
