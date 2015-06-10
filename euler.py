@@ -307,6 +307,24 @@ def is_cubic_number(n):
     bottom = math.floor(m)
     return n == cubic_number(top) or n == cubic_number(bottom)
 
+# Fractions
+
+def nearest_left_reduced_proper_fraction(target, max_denominator):
+    target_value = float(target)
+    closest = fractions.Fraction(0, 1)
+    min_distance = 1
+
+    for d in range(2, max_denominator + 1):
+        n = math.floor(d * target_value)
+        frac = fractions.Fraction(n, d)
+        while frac.numerator != n and n >= 1:
+            n = n - 1
+            frac = fractions.Fraction(n, d)
+        distance = target_value - float(frac)
+        if distance < min_distance and frac != target:
+            min_distance = distance
+            closest = frac
+    return closest
 
 # List helpers
 
