@@ -2,6 +2,7 @@
 import sys
 import math
 import fractions
+import pyprimes
 
 # Primes and factoring
 
@@ -89,12 +90,11 @@ def coprimes_less_than(n):
         return coprimes
 
 def totient(n):
-    factors = prime_factors(n)
+    factors = list(set(pyprimes.factors(n)))
     result = 1
     for p in factors:
         result = result * (1 - (1 / p))
-    return int(result * n)
-
+    return round(result * n)
 
 # String-like operations on numbers
 
