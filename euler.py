@@ -326,6 +326,18 @@ def nearest_left_reduced_proper_fraction(target, max_denominator):
             closest = frac
     return closest
 
+def count_fractions_in_range(min_limit, max_limit, D):
+    min_value = float(min_limit)
+    max_value = float(max_limit)
+    count = 0
+    for d in range(2, D + 1):
+        n_min = math.ceil(d * min_value)
+        n_max = math.floor(d * max_value)
+        for n in range(n_min, n_max + 1):
+            if n != min_limit.numerator and n != max_limit.numerator and d != min_limit.denominator and d != max_limit.denominator and is_relatively_prime(n, d):
+                count = count + 1
+    return count
+
 # List helpers
 
 def product(list):
