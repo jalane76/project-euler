@@ -120,6 +120,38 @@ def rotate_left(n, r):
 def is_permutation(n, m):
     return sorted(list(str(n))) == sorted(list(str(m)))
 
+factorial_digit_values = [1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880]
+
+def factorial_sum_of_digits(n):
+    s = str(n)
+    sum = 0
+    for i in s:
+        sum = sum + factorial_digit_values[int(i)]
+    return sum
+
+factorial_sum_chain_loop_values = {0 : 0,
+                                   1 : 0,
+                                   2 : 0,
+                                   145 : 0,
+                                   169 : 2,
+                                   363601 : 2,
+                                   1454 : 2,
+                                   871 : 1,
+                                   45361 : 1,
+                                   872 : 1,
+                                   45362 : 1}
+
+def factorial_sum_chain_size(n):
+    num_terms = 1
+    previous_n = -1
+    while n not in factorial_sum_chain_loop_values and previous_n != n:
+        previous_n = n
+        n = factorial_sum_of_digits(n)
+        num_terms = num_terms + 1
+    if n in factorial_sum_chain_loop_values:
+        num_terms = num_terms + factorial_sum_chain_loop_values[n]
+    return num_terms
+
 # Sequences and counting
 
 def collatz_sequence(n):

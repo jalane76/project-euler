@@ -5,8 +5,6 @@ import itertools
 import fractions
 import euler
 
-import fractions
-
 def main():
     D = 12000
     min = fractions.Fraction(1, 3)
