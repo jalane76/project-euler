@@ -370,6 +370,55 @@ def count_fractions_in_range(min_limit, max_limit, D):
                 count = count + 1
     return count
 
+# Triangles
+
+def generate_up_triple(seed_triple):
+    a = seed_triple[0]
+    b = seed_triple[1]
+    c = seed_triple[2]
+    return (a - 2 * b + 2 * c, 2 * a - b + 2 * c, 2 * a - 2 * b + 3 * c)
+
+def generate_along_triple(seed_triple):
+    a = seed_triple[0]
+    b = seed_triple[1]
+    c = seed_triple[2]
+    return (a + 2 * b + 2 * c, 2 * a + b + 2 * c, 2 * a + 2 * b + 3 * c)
+
+def generate_down_triple(seed_triple):
+    a = seed_triple[0]
+    b = seed_triple[1]
+    c = seed_triple[2]
+    return (-a + 2 * b + 2 * c, -2 * a + b + 2 * c, -2 * a + 2 * b + 3 * c)
+
+def generate_triple_multiple(triple, m):
+    return (triple[0] * m, triple[1] * m, triple[2] * m)
+
+def generate_pythagorean_perimeters_less_than(seed_triple, max_perimeter):
+    perimeters = []
+    L = sum(seed_triple)
+    if L > max_perimeter:
+        return perimeters
+
+    perimeters.append(L)
+    m = 2
+    m_triple = generate_triple_multiple(seed_triple, m)
+    L_m = sum(m_triple)
+    while L_m <= max_perimeter:
+        perimeters.append(L_m)
+        m = m + 1
+        m_triple = generate_triple_multiple(seed_triple, m)
+        L_m = sum(m_triple)
+
+    up = generate_up_triple(seed_triple)
+    along = generate_along_triple(seed_triple)
+    down = generate_down_triple(seed_triple)
+
+    perimeters.extend(generate_pythagorean_perimeters_less_than(up, max_perimeter))
+    perimeters.extend(generate_pythagorean_perimeters_less_than(along, max_perimeter))
+    perimeters.extend(generate_pythagorean_perimeters_less_than(down, max_perimeter))
+
+    return perimeters
+
 # List helpers
 
 def product(list):
