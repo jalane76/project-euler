@@ -260,6 +260,20 @@ def find_fundamental_pell_solution(d):
         i += 1
     return (convergent.numerator, convergent.denominator)
 
+def summations(n):
+    return []
+
+def expand_summation(summation):
+    return []
+
+def get_2_term_summations(n):
+    if n < 2:
+        return []
+    summations = []
+    for i in range(math.ceil(n / 2), n):
+        summations.append([i, n - i])
+    return summations
+
 # Polygonal or figurative numbers
 
 def triangle_number(n):
