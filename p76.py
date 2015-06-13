@@ -5,7 +5,8 @@ import itertools
 import euler
 
 def main():
-    print(euler.get_2_term_summations(7))
+    print(euler.partition_function(100, []) - 1)
+
 
 if __name__ == "__main__":
     start = time.time()

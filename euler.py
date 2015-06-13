@@ -260,11 +260,59 @@ def find_fundamental_pell_solution(d):
         i += 1
     return (convergent.numerator, convergent.denominator)
 
+def partition_function(n, memory):
+    if n == 0:
+        return 1
+    elif n < 0:
+        return 0
+    if memory is None or len(memory) == 0:
+        memory = [0] * (n + 1)
+    result = 0
+    for k in range(1, n + 1):
+        m = (-1) ** (k + 1)
+
+        n_1 = n - int((3 * k * k - k) / 2)
+        p_1 = 0
+        if n_1 < 0 or memory[n_1] == 0:
+            p_1 = partition_function(n_1, memory)
+        else:
+            p_1 = memory[n_1]
+
+        n_2 = n - int((3 * k * k + k) / 2)
+        p_2 = 0
+        if n_2 < 0 or memory[n_2] == 0:
+            p_2 = partition_function(n_2, memory)
+        else:
+            p_2 = memory[n_2]
+        result = result + m * (p_1 + p_2)
+    if memory[n] == 0:
+        memory[n] = result
+    return result
+
+#  These next three functions take up too much space
 def summations(n):
-    return []
+    summations = get_2_term_summations(n)
+    for summation in summations:
+        summations.extend(expand_summation(summation))
+    unique = []
+    for s in summations:
+        if s not in unique:
+            unique.append(s)
+    return unique
 
 def expand_summation(summation):
-    return []
+    index = len(summation) - 1
+    while summation[index] == 1 and index >= 0:
+        index = index - 1
+    if index == 0 and summation[index] == 1:
+        return [summation]
+
+    two_terms = get_2_term_summations(summation[index])
+    new_summations = []
+    for terms in two_terms:
+        new_summation = summation[:index] + terms + summation[index + 1:]
+        new_summations.append(new_summation)
+    return new_summations
 
 def get_2_term_summations(n):
     if n < 2:
@@ -273,6 +321,11 @@ def get_2_term_summations(n):
     for i in range(math.ceil(n / 2), n):
         summations.append([i, n - i])
     return summations
+
+def min_num_binary_nodes(n):
+    if n <= 1:
+        return 0
+    return min_num_binary_nodes(n - 1) + min_num_binary_nodes(math.floor(n/2)) + 1
 
 # Polygonal or figurative numbers
 
