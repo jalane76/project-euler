@@ -260,6 +260,23 @@ def find_fundamental_pell_solution(d):
         i += 1
     return (convergent.numerator, convergent.denominator)
 
+def integer_partition_count_2(n):
+    p = [1]*(n + 1)
+
+    for i in range(1, n + 1):
+        j, k, s = 1, 1, 0
+        while j > 0:
+            j = i - (3 * k * k + k) // 2
+            if j >= 0:
+                s -= (-1) ** k * p[j]
+            j = i - (3 * k * k - k) // 2
+            if j >= 0:
+                s -= (-1) ** k * p[j]
+            k += 1
+        p[i] = s
+
+    return p[n] - 1
+
 def integer_partition_count(n, memory):
     if memory is None or len(memory) == 0:
         memory = [0] * (n + 1)
@@ -274,19 +291,25 @@ def integer_partition_count(n, memory):
         m = (-1) ** (k + 1)
 
         n_1 = n - int((3 * k * k - k) / 2)
-        p_1 = 0
-        if n_1 < 0 or memory[n_1] == 0:
+        n_2 = n - int((3 * k * k + k) / 2)
+
+        if n_1 < 0 and n_2 < 0:
+            break
+
+        if n_1 < 0:
+            p_1 = 0
+        elif memory[n_1] == 0:
             p_1 = integer_partition_count(n_1, memory)
         else:
             p_1 = memory[n_1]
 
-        n_2 = n - int((3 * k * k + k) / 2)
-        p_2 = 0
-        if n_2 < 0 or memory[n_2] == 0:
+        if n_2 < 0:
+            p_2 = 0
+        elif memory[n_2] == 0:
             p_2 = integer_partition_count(n_2, memory)
         else:
             p_2 = memory[n_2]
-        result = result + m * (p_1 + p_2)
+        result += m * (p_1 + p_2)
 
     if memory[n] == 0:
         memory[n] = result

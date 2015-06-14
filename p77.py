@@ -6,7 +6,7 @@ import euler
 
 def main():
     n = 10
-    while euler.prime_partition_count(n, [] , []) < 5000:
+    while euler.prime_partition_count(n, [], []) < 5000:
         n += 1
     print(n)
 
