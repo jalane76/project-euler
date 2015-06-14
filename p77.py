@@ -5,7 +5,10 @@ import itertools
 import euler
 
 def main():
-    print(euler.integer_partition_count(100, []) - 1)
+    n = 10
+    while euler.prime_partition_count(n, [] , []) < 5000:
+        n += 1
+    print(n)
 
 
 if __name__ == "__main__":

@@ -260,13 +260,15 @@ def find_fundamental_pell_solution(d):
         i += 1
     return (convergent.numerator, convergent.denominator)
 
-def partition_function(n, memory):
+def integer_partition_count(n, memory):
+    if memory is None or len(memory) == 0:
+        memory = [0] * (n + 1)
+
     if n == 0:
         return 1
     elif n < 0:
         return 0
-    if memory is None or len(memory) == 0:
-        memory = [0] * (n + 1)
+
     result = 0
     for k in range(1, n + 1):
         m = (-1) ** (k + 1)
@@ -274,19 +276,62 @@ def partition_function(n, memory):
         n_1 = n - int((3 * k * k - k) / 2)
         p_1 = 0
         if n_1 < 0 or memory[n_1] == 0:
-            p_1 = partition_function(n_1, memory)
+            p_1 = integer_partition_count(n_1, memory)
         else:
             p_1 = memory[n_1]
 
         n_2 = n - int((3 * k * k + k) / 2)
         p_2 = 0
         if n_2 < 0 or memory[n_2] == 0:
-            p_2 = partition_function(n_2, memory)
+            p_2 = integer_partition_count(n_2, memory)
         else:
             p_2 = memory[n_2]
         result = result + m * (p_1 + p_2)
+
     if memory[n] == 0:
         memory[n] = result
+    return result
+
+def sopf(n):
+    return sum(prime_factors(n))
+
+def prime_partition_count(n, sopf_memory, count_memory):
+    if sopf_memory is None or len(sopf_memory) == 0:
+        sopf_memory = [0] * (n + 1)
+    if count_memory is None or len(count_memory) == 0:
+        count_memory = [0] * (n + 1)
+
+    if n == 2 or n == 0:
+        count_memory[n] = 1
+        return 1
+    elif n < 0 or n == 1:
+        return 0
+
+    result = 0
+    for j in range(1, n):
+        s = 0
+        if sopf_memory[j] == 0:
+            s = sopf(j)
+            sopf_memory[j] = s
+        else:
+            s = sopf_memory[j]
+
+        k = 0
+        n_j = n - j
+        if count_memory[n_j] == 0:
+            k = prime_partition_count(n_j, sopf_memory, count_memory)
+        else:
+            k = count_memory[n_j]
+        result += s * k
+    s_n = 0
+    if sopf_memory[n] == 0:
+        s_n = sopf(n)
+        sopf_memory[n] = s_n
+    else:
+        s_n = sopf_memory[n]
+    result = round((result + s_n) / n)
+    if count_memory[n] == 0:
+        count_memory[n] = result
     return result
 
 #  These next three functions take up too much space
