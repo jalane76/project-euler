@@ -152,6 +152,11 @@ def factorial_sum_chain_size(n):
         num_terms = num_terms + factorial_sum_chain_loop_values[n]
     return num_terms
 
+def digital_sum(decimal, num_digits):
+    s = str(decimal).replace('.', '')
+    digits = [int(c) for c in s][:num_digits]
+    return sum(digits)
+
 # Sequences and counting
 
 def collatz_sequence(n):
