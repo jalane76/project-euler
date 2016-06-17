@@ -5,7 +5,7 @@ import itertools
 import euler
 
 def main():
-    with open('p079_keylog.txt') as f:
+    with open('p79_keylog.txt') as f:
         logins = [[x for x in line.split()] for line in f]
     logins = [s[0] for s in logins]
 
