@@ -3,7 +3,7 @@
 import time
 
 def main():
-    with open('p81_matrix.txt') as f:
+    with open('path_sum_matrix.txt') as f:
         matrix = [[int(x) for x in line.split(',')] for line in f]
 
     mat_size = len(matrix)
