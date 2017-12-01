@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d276f7a4-830c-4901-b8c3-c7ceb42e8ca3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="d276f7a4-830c-4901-b8c3-c7ceb42e8ca3" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -13,11 +11,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="p86.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/p86.py">
+      <file leaf-file-name="p87.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/p87.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="117" lean-forward="false" selection-start-line="6" selection-start-column="117" selection-end-line="6" selection-end-column="117" />
+            <state relative-caret-position="442">
+              <caret line="26" column="10" lean-forward="true" selection-start-line="26" selection-start-column="10" selection-end-line="26" selection-end-column="10" />
               <folding>
                 <element signature="e#11#22#0" expanded="true" />
               </folding>
@@ -28,8 +26,8 @@
       <file leaf-file-name="euler.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/euler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="583">
-              <caret line="321" column="0" lean-forward="false" selection-start-line="321" selection-start-column="0" selection-end-line="321" selection-end-column="0" />
+            <state relative-caret-position="17">
+              <caret line="160" column="0" lean-forward="true" selection-start-line="160" selection-start-column="0" selection-end-line="160" selection-end-column="0" />
               <folding>
                 <element signature="e#143#399#0" expanded="false" />
                 <element signature="e#162#217#0" expanded="false" />
@@ -170,6 +168,7 @@
         <option value="$PROJECT_DIR$/p84-fix.py" />
         <option value="$PROJECT_DIR$/p85.py" />
         <option value="$PROJECT_DIR$/p86.py" />
+        <option value="$PROJECT_DIR$/p87.py" />
       </list>
     </option>
   </component>
@@ -233,24 +232,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.p86">
-    <configuration name="p82" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="project-euler" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/p82.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-    </configuration>
+  <component name="RunManager" selected="Python.p87">
     <configuration name="p83" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -319,20 +301,37 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
+    <configuration name="p87" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="project-euler" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/p87.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+    </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.p82" />
-      <item index="1" class="java.lang.String" itemvalue="Python.p83" />
-      <item index="2" class="java.lang.String" itemvalue="Python.p84-fix" />
-      <item index="3" class="java.lang.String" itemvalue="Python.p85" />
-      <item index="4" class="java.lang.String" itemvalue="Python.p86" />
+      <item index="0" class="java.lang.String" itemvalue="Python.p83" />
+      <item index="1" class="java.lang.String" itemvalue="Python.p84-fix" />
+      <item index="2" class="java.lang.String" itemvalue="Python.p85" />
+      <item index="3" class="java.lang.String" itemvalue="Python.p86" />
+      <item index="4" class="java.lang.String" itemvalue="Python.p87" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.p86" />
-        <item index="1" class="java.lang.String" itemvalue="Python.p85" />
-        <item index="2" class="java.lang.String" itemvalue="Python.p84-fix" />
-        <item index="3" class="java.lang.String" itemvalue="Python.p83" />
-        <item index="4" class="java.lang.String" itemvalue="Python.p82" />
+        <item index="0" class="java.lang.String" itemvalue="Python.p87" />
+        <item index="1" class="java.lang.String" itemvalue="Python.p86" />
+        <item index="2" class="java.lang.String" itemvalue="Python.p85" />
+        <item index="3" class="java.lang.String" itemvalue="Python.p84-fix" />
+        <item index="4" class="java.lang.String" itemvalue="Python.p83" />
       </list>
     </recent_temporary>
   </component>
@@ -819,10 +818,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/p86.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="117" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+          <folding>
+            <element signature="e#11#22#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/euler.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="583">
-          <caret line="321" column="0" lean-forward="false" selection-start-line="321" selection-start-column="0" selection-end-line="321" selection-end-column="0" />
+        <state relative-caret-position="17">
+          <caret line="160" column="0" lean-forward="true" selection-start-line="160" selection-start-column="0" selection-end-line="160" selection-end-column="0" />
           <folding>
             <element signature="e#143#399#0" expanded="false" />
             <element signature="e#162#217#0" expanded="false" />
@@ -940,10 +949,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/p86.py">
+    <entry file="file://$PROJECT_DIR$/p87.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="117" lean-forward="false" selection-start-line="6" selection-start-column="117" selection-end-line="6" selection-end-column="117" />
+        <state relative-caret-position="442">
+          <caret line="26" column="10" lean-forward="true" selection-start-line="26" selection-start-column="10" selection-end-line="26" selection-end-column="10" />
           <folding>
             <element signature="e#11#22#0" expanded="true" />
           </folding>
