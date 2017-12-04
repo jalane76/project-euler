@@ -7,20 +7,25 @@ import euler
 
 def main():
 
-    M = 5010
+    M = 50000000
     P = math.sqrt(M)
-    P = math.ceil(P)
+    P = math.floor(P)
     factors = [x for x in range(2, P) if euler.is_prime(x)]
-    factors.sort(reverse=True)
     print(factors)
-    num_solutions = 0
+    solutions = []
     for x in factors:
-        for y in factors:
-            for z in factors:
-                n = math.pow(x, 2) + math.pow(y, 3) + math.pow(z, 4)
-                if n < M:
-                    num_solutions += 1
-    print(num_solutions)
+        x2 = math.pow(x, 2)
+        if x2 < M:
+            for y in factors:
+                y3 = math.pow(y, 3)
+                if x2 + y3 < M:
+                    for z in factors:
+                        z4 = math.pow(z, 4)
+                        n = x2 + y3 + z4
+                        if n < M:
+                            solutions.append(n)
+    solutions = set(solutions)
+    print(len(solutions))
 
 if __name__ == "__main__":
     start = time.time()
