@@ -38,6 +38,19 @@ def factors(n):     #Fix this to be more robust
 def prime_factors(n):
     return [i for i in factors(n) if is_prime(i)]
 
+def prime_factorization(n):
+    i = 2
+    factors = []
+    while i * i <= n:
+        if n % i:
+            i += 1
+        else:
+            n //= i
+            factors.append(i)
+    if n > 1:
+        factors.append(n)
+    return factors
+
 def even_divisors(n):   #Fix this to be more robust
     divisors = factors(n)
     del divisors[-1]
